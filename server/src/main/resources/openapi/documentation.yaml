@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Anime Catalog API
+  description: API KMP + Ktor para catálogo de animes e personagens
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+
+tags:
+  - name: Animes
+    description: CRUD de animes
+  - name: Characters
+    description: CRUD de personagens
+
+paths:
+  /animes:
+    get:
+      tags: [Animes]
+      summary: Lista todos os animes
+      responses:
+        '200':
+          description: Lista de animes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Anime'
+    post:
+      tags: [Animes]
+      summary: Cria um anime
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Anime'
+      responses:
+        '201':
+          description: Anime criado
+
+  /animes/{id}:
+    put:
+      tags: [Animes]
+      summary: Atualiza um anime
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Anime'
+      responses:
+        '200':
+          description: Anime atualizado
+    delete:
+      tags: [Animes]
+      summary: Remove um anime
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Anime removido
+
+  /characters:
+    get:
+      tags: [Characters]
+      summary: Lista todos os personagens
+      responses:
+        '200':
+          description: Lista de personagens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+    post:
+      tags: [Characters]
+      summary: Cria um personagem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      responses:
+        '201':
+          description: Personagem criado
+
+  /characters/{id}:
+    put:
+      tags: [Characters]
+      summary: Atualiza um personagem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      responses:
+        '200':
+          description: Personagem atualizado
+    delete:
+      tags: [Characters]
+      summary: Remove um personagem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Personagem removido
+
+components:
+  schemas:
+    Anime:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        genre:
+          type: string
+        studio:
+          type: string
+        episodes:
+          type: integer
+        release_year:
+          type: integer
+
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+        anime_id:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+        power:
+          type: string
