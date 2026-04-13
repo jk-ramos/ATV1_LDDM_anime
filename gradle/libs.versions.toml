@@ -25,6 +25,9 @@ kotlinx-coroutines = "1.10.2"
 kotlinTest = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinTestJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }
+ktorClientCore = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktorClientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktorClientContentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidxTestExtJunit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }

@@ -18,6 +18,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.composeUiToolingPreview)
             implementation(libs.androidxActivityCompose)
+            implementation(libs.ktorClientOkhttp)
         }
 
         commonMain.dependencies {
@@ -30,6 +31,11 @@ kotlin {
             implementation(libs.androidxLifecycleViewmodelCompose)
             implementation(libs.androidxLifecycleRuntimeCompose)
             implementation(project(":shared"))
+            implementation(libs.ktorClientCore)
+            implementation(libs.ktorClientContentNegotiation)
+            implementation(libs.kotlinxSerializationJson)
+            implementation(libs.ktorSerializationKotlinxJson)
+            implementation(compose.materialIconsExtended)
         }
 
         commonTest.dependencies {

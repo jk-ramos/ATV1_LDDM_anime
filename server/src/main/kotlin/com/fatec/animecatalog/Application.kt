@@ -9,8 +9,10 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.swagger.swaggerUI
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -32,10 +34,20 @@ fun Application.module() {
 
     routing {
         get("/") {
-            call.respondText("Anime Catalog API ativa.")
+            call.respondText("API do catálogo de anime ativa.")
         }
 
         animeRoutes(animeRepository)
         characterRoutes(characterRepository)
+
+        staticResources(
+            remotePath = "/openapi",
+            basePackage = "openapi"
+        )
+
+        swaggerUI(
+            path = "swagger",
+            swaggerFile = "openapi/documentation.yaml"
+        )
     }
 }
